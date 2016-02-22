@@ -4,7 +4,7 @@ class IdeasMailer < ApplicationMailer
     @user = user
     @idea = idea
     @owner = idea.user
-    mail(to: @owner.email, subject: "#{user} liked your idea!")
+    mail(to: @owner.email, subject: "#{user.full_name} liked your idea!")
   end
 
 end
