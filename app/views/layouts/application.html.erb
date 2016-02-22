@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ShareIdeas</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+  <style>
+    body {
+      margin: 75px;  
+    }
+
+    .dropdown {
+      padding: 15px 30px 0px 20px;
+      color: rgb(113, 111, 111);
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <a class="navbar-left" href="#"><%= image_tag "logo.png" %></a>
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "Home", ideas_path %></li>
+        <li><%= link_to "All Ideas", ideas_path %></li>
+        <li><%= link_to "New Idea", new_idea_path %></li>
+        <% if user_signed_in? %>
+          <!-- <%# link_to "All Favs", favourites_path %> -->
+          <li><%= link_to "Log out", sessions_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to "Login", new_session_path%></li>
+          <li><%= link_to "Sign Up", new_user_path %></li>
+        <% end %>
+
+      <!--  <li>
+          <div class="dropdown">
+          <span class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Posts<span class="caret"></span>
+          </span>
+            <ul class="dropdown-menu">
+              <li>
+                <% if user_signed_in? %>
+                  <%# link_to "All Favs", favourites_path %>
+                  <%# link_to "Log out", sessions_path, method: :delete %>
+                <% else %>
+                  <%# link_to "Login", new_session_path%>
+                  <%# link_to "Sign Up", new_user_path %>
+                <% end %>
+              </li>
+            </ul>
+          </div>
+        </li>  Dropdown doesn't appear correct if there is time later! -->
+
+      </ul>
+    </div>
+  </nav>
+
+<%= yield %>
+
+</body>
+</html>

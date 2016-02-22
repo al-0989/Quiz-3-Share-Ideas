@@ -1,0 +1,63 @@
+<p id="notice"><%= notice || alert %></p>
+
+<!-- <p><%= @idea.errors.full_messages.join(", ") %></p> -->
+
+<p>
+  <strong>Title:</strong>
+  <%= @idea.title %>
+</p>
+
+<p> <strong>Created by:</strong><%= @idea.user_full_name if @idea.user %></p>
+
+<p>
+  <strong>Idea:</strong>
+  <br>
+  <%= @idea.body %>
+</p>
+
+<!-- Adding the Like/Un-like  -->
+<hr align="left" width="30%">
+  <% like = @idea.like_for(current_user) %>
+  Fav:
+  <% if like %>
+    <%= link_to fa_icon("thumbs-up"), idea_like_path(@idea, like), method: :delete, class:"like-fav-icon"  %>
+  <% else %>
+    <%= link_to fa_icon("thumbs-o-up"), idea_likes_path(@idea), method: :post, class:"like-fav-icon" %>
+  <% end %>
+  (<%= @idea.likes.count %>) |
+<!-- End of Like/Un-like -->
+
+<!-- Adding the option to join -->
+<% join = @idea.join_for(current_user) %>
+Join Idea:
+<% if join %>
+  <%= link_to fa_icon("check-square-o"), idea_join_path(@idea, join), method: :delete, class:"like-fav-icon"  %>
+<% else %>
+  <%= link_to fa_icon("square-o"), idea_joins_path(@idea), method: :post, class:"like-fav-icon" %>
+<% end %>
+<hr align="left" width="30%">
+<!-- End of join -->
+
+<!-- Adding List of joined users -->
+<h3>Joined Users:</h3>
+<ul>
+  <% @idea.joined_users.each do |user| %>
+    <li><%=user.full_name%></li>
+  <% end %>
+</ul>
+<!-- End of joined used -->
+
+<br>
+<%# If the user has the authorization to edit show edit link %>
+<% if can? :edit, @idea %>
+  <%= link_to "Edit", edit_idea_path(@idea) %> |
+<% end %>
+
+<% if can? :destroy, @idea %>
+  <%= link_to "Delete",
+             idea_path(@idea),
+             method: :delete,
+             data: {confirm: "Are you sure you want to delete #{@idea.title}?"} %> |
+<% end %>
+
+<%= link_to 'Back', ideas_path %>
