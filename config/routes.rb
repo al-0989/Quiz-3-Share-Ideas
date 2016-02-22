@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  
+  match "/delayed_job" => DelayedJobWeb, :anchor => false, via: [:get, :post]
 
   # THE IDEAS CONTROLLER
   resources :ideas do
@@ -9,7 +11,7 @@ Rails.application.routes.draw do
   # THE JOINS CONTROLLER
   # This is to allow us to have a page showing all the users who have joined
   resources :joins, only: [:index]
-  
+
   # THE USERS CONTROLLER
   resources :users, only: [:create, :new]
 

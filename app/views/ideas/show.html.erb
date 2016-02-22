@@ -18,7 +18,7 @@
 <!-- Adding the Like/Un-like  -->
 <hr align="left" width="30%">
   <% like = @idea.like_for(current_user) %>
-  Fav:
+  Like:
   <% if like %>
     <%= link_to fa_icon("thumbs-up"), idea_like_path(@idea, like), method: :delete, class:"like-fav-icon"  %>
   <% else %>

@@ -8,7 +8,7 @@
 
   <style>
     body {
-      margin: 75px;  
+      margin: 75px;
     }
 
     .dropdown {
@@ -26,7 +26,7 @@
         <li><%= link_to "All Ideas", ideas_path %></li>
         <li><%= link_to "New Idea", new_idea_path %></li>
         <% if user_signed_in? %>
-          <!-- <%# link_to "All Favs", favourites_path %> -->
+          <li><%= link_to "All Joined Ideas", joins_path %></li>
           <li><%= link_to "Log out", sessions_path, method: :delete %></li>
         <% else %>
           <li><%= link_to "Login", new_session_path%></li>

@@ -1,0 +1,9 @@
+<h1>All Joined Questions</h1>
+
+<table class="table table-striped">
+  <% @join.each do |join| %>
+    <tr>
+      <td><%= link_to join.title, idea_path(join) %></td>
+    </tr>
+  <% end %>
+</table>

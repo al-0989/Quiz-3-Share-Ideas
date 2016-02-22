@@ -3,7 +3,8 @@ class JoinsController < ApplicationController
   before_action :authenticate_user
 
   def index
-    @join = current_user.joined_users
+    # This returns table of ideas the current user has joined
+    @join = current_user.joined_ideas
   end
 
   def create
